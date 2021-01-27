@@ -5,12 +5,12 @@ import (
 	"fmt"
 )
 
+var urlMap = map[string]string{
+	"pgadmin": "https://pgadmin.buirrito.com",
+}
+
 // RedirectFrom gets the redirect target of the provided short URL.
 func RedirectFrom(shortURL string) (string, error) {
-	urlMap := map[string]string{
-		"pgadmin": "https://pgadmin.buirrito.com",
-	}
-
 	if val, ok := urlMap[shortURL]; ok {
 		return val, nil
 	}
