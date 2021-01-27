@@ -40,3 +40,10 @@ jobs:
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
+
+      - name: Deploy to Kubernetes cluster
+        uses: steebchen/kubectl@master
+        env:
+          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+        with:
+          args: set image deployment/bounce bounce=${{ secrets.DOCKERHUB_USERNAME }}/bounce:${{ github.sha }}
