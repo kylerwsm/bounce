@@ -5,6 +5,9 @@ import (
 	"log"
 	"os"
 
+	// Import environment variables.
+	_ "github.com/kylerwsm/bounce/internal/env"
+
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -15,7 +18,7 @@ var (
 )
 
 func dieIfAbsent(boolean bool, envKey string) {
-	if boolean {
+	if !boolean {
 		log.Fatalf("Required environment variable \"%s\" is not present", envKey)
 	}
 }
